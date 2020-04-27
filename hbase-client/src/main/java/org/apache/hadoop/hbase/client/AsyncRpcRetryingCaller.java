@@ -168,9 +168,9 @@ public abstract class AsyncRpcRetryingCaller<T> {
       return;
     }
     if (tries > startLogErrorsCnt) {
-      LOG.warn(errMsg.get() + ", tries = " + tries + ", maxAttempts = " + maxAttempts +
-        ", timeout = " + TimeUnit.NANOSECONDS.toMillis(operationTimeoutNs) +
-        " ms, time elapsed = " + elapsedMs() + " ms", error);
+      LOG.warn("{}, tries = {}, maxAttempts = {},  timeout = {} ms, time elapsed = {} ms",
+        errMsg.get(), tries, maxAttempts, TimeUnit.NANOSECONDS.toMillis(operationTimeoutNs),
+        elapsedMs(), error);
     }
     updateCachedLocation.accept(error);
     RetriesExhaustedException.ThrowableWithExtraContext qt =
